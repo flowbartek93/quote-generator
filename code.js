@@ -7,6 +7,18 @@ const twitterBtn = document.querySelector(".twitter-button");
 const newQuoteBtn = document.querySelector("#new-quote");
 const loader = document.getElementById("loader");
 
+//Dark Mode
+
+const switcher = document.querySelector('input[type="checkbox"');
+
+function setMode(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+}
+
 let apiQuotes = [];
 
 const pickRandomIndexFromArray = (array) => {
@@ -14,30 +26,32 @@ const pickRandomIndexFromArray = (array) => {
   return randomIndex;
 };
 
-function loading() {
+function ShowLoadingSpinner() {
   loader.hidden = false;
   container.hidden = true;
 }
 
-function complete() {
+function removeLoadingSpinner() {
   container.hidden = false;
   loader.hidden = true;
 }
 
 async function getQuotes() {
-  loading();
+  ShowLoadingSpinner();
   const apiUrl = "https://type.fit/api/quotes";
 
   try {
     const response = await fetch(apiUrl);
     apiQuotes = await response.json();
     displayQuote();
-    complete();
-  } catch {}
+    removeLoadingSpinner();
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function displayQuote() {
-  loading();
+  ShowLoadingSpinner();
   let randomIndex = pickRandomIndexFromArray(apiQuotes);
   const randomQuoteObj = apiQuotes[randomIndex];
 
@@ -54,7 +68,7 @@ function displayQuote() {
   }
 
   quoteContainer.textContent = randomQuoteObj.text;
-  complete();
+  removeLoadingSpinner();
 }
 
 function tweetQuote() {
@@ -66,5 +80,7 @@ function tweetQuote() {
 
 newQuoteBtn.addEventListener("click", displayQuote);
 twitterBtn.addEventListener("click", tweetQuote);
+
+switcher.addEventListener("change", setMode);
 
 getQuotes();
