@@ -5,12 +5,17 @@
   --background-color: rgb(252, 252, 252);
   --container-color: rgb(18, 18, 18);
   --button-color: rgb(245, 245, 245);
+  --box-shadow-btn: 0 0.3rem rgba(255, 253, 253, 0.65);
+  --loader-circle: #f3f3f3;
 }
 
 [data-theme="dark"] {
   --background-color: rgb(66, 66, 66);
   --container-color: rgb(18, 18, 18);
   --main-color: rgb(32, 33, 36);
+  --box-shadow-btn: 0 0.3rem rgba(22, 21, 21, 0.3);
+  --loader-circle: rgb(22, 21, 21);
+  --loader-circle-small: rgba(31, 143, 255);
 }
 
 html {
@@ -80,7 +85,7 @@ button {
   color: var(--main-color);
   background-color: var(--button-color);
   padding: 0.5rem 1.8rem;
-  box-shadow: 0 0.3rem rgba(255, 253, 253, 0.65);
+  box-shadow: var(--box-shadow-btn);
 }
 
 button:hover {
@@ -93,8 +98,8 @@ button:active {
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border: 16px solid var(--loader-circle); /* Light grey */
+  border-top: 16px solid var(--loader-circle-small);
   border-radius: 50%;
   width: 120px;
   height: 120px;

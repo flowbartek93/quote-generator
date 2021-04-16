@@ -85,6 +85,7 @@ function tweetQuote() {
 document.addEventListener("DOMContentLoaded", () => {
   newQuoteBtn.addEventListener("click", displayQuote);
   twitterBtn.addEventListener("click", tweetQuote);
+
   switcher.addEventListener("change", setMode);
   const theme = window.localStorage.getItem("theme");
   document.documentElement.setAttribute("data-theme", theme);
