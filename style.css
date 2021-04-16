@@ -67,6 +67,7 @@ body {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 button {
@@ -183,6 +184,21 @@ input:checked + .slider::before {
   }
 
   .quote-text {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
+  }
+  .quote-author {
+    font-size: 1.5rem;
+  }
+  .fa-sun {
+    font-size: 1.5rem;
+  }
+  .fa-moon {
+    font-size: 1.5rem;
+  }
+
+  button {
+    height: 2rem;
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 }

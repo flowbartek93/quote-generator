@@ -9,13 +9,17 @@ const loader = document.getElementById("loader");
 
 //Dark Mode
 
+const LIGHT_THEME = "light";
+const DARK_THEME = "dark";
 const switcher = document.querySelector('input[type="checkbox"');
 
 function setMode(e) {
   if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
+    document.documentElement.setAttribute("data-theme", DARK_THEME);
+    window.localStorage.setItem("theme", DARK_THEME);
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.setAttribute("data-theme", LIGHT_THEME);
+    window.localStorage.setItem("theme", LIGHT_THEME);
   }
 }
 
@@ -78,9 +82,12 @@ function tweetQuote() {
 
 //Event Listeners
 
-newQuoteBtn.addEventListener("click", displayQuote);
-twitterBtn.addEventListener("click", tweetQuote);
+document.addEventListener("DOMContentLoaded", () => {
+  newQuoteBtn.addEventListener("click", displayQuote);
+  twitterBtn.addEventListener("click", tweetQuote);
+  switcher.addEventListener("change", setMode);
+  const theme = window.localStorage.getItem("theme");
+  document.documentElement.setAttribute("data-theme", theme);
 
-switcher.addEventListener("change", setMode);
-
-getQuotes();
+  getQuotes();
+});
